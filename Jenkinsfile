@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        MVN_HOME = '/usr/share/maven'  // Adjust this if your Maven path is different
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -14,19 +10,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                bat 'mvn clean package'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
 
         stage('Deploy to Tomcat') {
             steps {
-                sh 'mvn tomcat7:deploy'
+                bat 'mvn tomcat7:deploy'
             }
         }
     }
